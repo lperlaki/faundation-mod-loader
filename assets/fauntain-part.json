@@ -1,0 +1,24 @@
+{
+    "DataType": "BUILDING_PART",
+    "Id": "JSON_FOUNTAIN_PART",
+    "Description": "",
+    "ConstructorData": {
+        "DataType": "DEFAULT_BUILDING_CONSTRUCTOR",
+        "CoreObjectPrefab": "JSON_PREFAB_FOUNTAIN"
+    },
+    "BuildingZone": [ 5, 5 ],
+    "ConstructionVisual": "JSON_PREFAB_FOUNTAIN_CONSTRUCTION",
+    "Cost": {
+        "UpkeepCost": [
+            { "Resource": "GOLD", "Quantity": 5 }
+        ],
+        "RessourcesNeeded": [
+            { "Resource": "WOOD", "Quantity": 5 },
+            { "Resource": "STONE", "Quantity": 10 }
+        ]
+    },
+    "Models": {
+        "JSON_PREFAB_FOUNTAIN": "assets/models/fountain.fbx/Prefab/Fountain",
+        "JSON_PREFAB_FOUNTAIN_CONSTRUCTION": "assets/models/fountain.fbx/Prefab/Fountain_Construction_Steps"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "DataType": "BUILDING",
+    "Id": "JSON_FOUNTAIN",
+    "Name": "JSON_MOD_FOUNTAIN",
+    "Description": "JSON_MOD_FOUNTAIN",
+    "BuildingType": "DECORATION",
+    "BuildingPartList": [ "JSON_FOUNTAIN_PART" ],
+    "VillagerRequired": { "Status": "NEWCOMER", "Quantity": 1 }
+}
