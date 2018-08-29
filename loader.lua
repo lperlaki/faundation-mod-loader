@@ -276,7 +276,38 @@ function json.decodeFile(path)
   end
 end
 
+-------------------------------------------------------------------------------
+-- ls function
+-------------------------------------------------------------------------------
 
+
+local function isWindows()
+  return package.config:sub(1,1) ='/'
+end
+
+local function listDir( path )
+  path = path or '.'
+  if isWindows() then
+    local file = io.popen('cd ' .. path .. '; dir')
+  else
+    local file = io.popen('cd ' .. path .. '; ls')
+  end
+  local arr = {}
+  for line in file:lines() do
+    table.insert (arr, line);
+  end
+  file:close()
+  return arr
+end
+
+local function hasValue (tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+    return false
+end
 
 
 
@@ -322,6 +353,17 @@ function loader:registerAsset(path)
   end
 end
 
+function loader:checkDependencies()
+  if self.Dependencies then
+    local mods = listDir('mods')
+    for i, v in ipairs(self.Dependencies) do
+      if not hasValue(mods, v) then
+        self:log('Mod ' .. v .. ' could not be found', 'ERROR')
+      end
+    end
+  end
+end
+
 
 
 -------------------------------------------------------------------------------
@@ -333,6 +375,7 @@ function create( arguments )
   loader.Name = arguments.Name
   loader.Author = arguments.Author
   loader.Description = arguments.Description
+  loader.Dependencies = arguments.Dependencies
   loader.Prefix = 'Mods/' .. arguments.Id .. '/'
   mod = foundation.createMod({
     Name = loader.Name,
